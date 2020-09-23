@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+    stages {
+        stage('Get Source Code') {
+            steps {
+               echo 'Get  code from a GitHub repository' 
+               git 'https://github.com/ramana1975/game-of-life.git'
+             }
+        }
+        stage('Build') {
+            steps {
+                echo 'Run  mvn compile'
+                sh "mvn compile"
+                }
+        }
+        stage('Test') {
+            steps {
+                echo 'Run  mvn on unix agent'
+                sh "mvn test"
+            }
+        }
+        stage('Static Code Analyis') {
+            steps {
+                echo 'Static Code Analyis'
+            }
+        }
+        stage('Unit Testing') {
+            steps {
+                echo 'Unit Testing Stage'
+            }
+        }
+        stage('functional Test') {
+            steps {
+                echo 'functional Test Stage'
+            }
+        }
+        stage('performance  Test') {
+            steps {
+                echo 'performance  Test Stage'
+            }
+        }
+        stage('security  Test') {
+            steps {
+                echo 'security  Test Stage'
+            }
+        }
+        stage('Deployment to Test Server') {
+            steps {
+            }
+        }
+        stage('Deployment to Staging Server') {
+            steps {
+                input 'Yes'
+            }
+        }
+        stage('Deployment to Production Server') {
+            steps {
+                input 'User Action'
+            }
+        }
+    }
+}
